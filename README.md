@@ -3,15 +3,16 @@
 
 ### Deliverables: 
  - Jupyter notebook 
-    -  contains analysis & pipeline
+    - contains analysis & pipeline
  - Tidy data set
-    - Utilize .py files as appropriate 
-    - Specifically a prepare file
+    - utilize .py files as appropriate 
+    - specifically a prepare file
  - A summarization of the data
-    - In notebook
-    - Contains theories & conclusions
+    - in notebook
+    - contains theories & conclusions
  - Predictions for the next two weeks worth of data
-    - Separate csv file
+    - separate csv file
  - Presentation
-    - Google slides (2 slides + intro)
-    - One clearly labeled visualization
+    - google slides (2 slides + intro)
+    - at least one clearly labeled visualization
+    - for a general audience
