@@ -11,6 +11,7 @@ def rename_cols(df):
 def set_date_index(df):
     df.date = pd.to_datetime(df.date)
     df.set_index('date', inplace = True)
+    df.sort_index(inplace=True)
     return df
 
 def fix_object_columns(df):
