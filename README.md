@@ -1,5 +1,4 @@
-# FitBit Project
-## A Time Series Analysis
+# Fitbit Project - A Time Series Analysis
 ##### Presented by Dom and Misty
 
 ### Deliverables: 
