@@ -12,3 +12,9 @@ def set_date_index(df):
     df.date = pd.to_datetime(df.date)
     df.set_index('date', inplace = True)
     return df
+
+def fix_object_columns(df):
+    for col in df.columns:
+        if df[col].dtype.str == '|O':
+            df[col] = df[col].str.replace(",","_").astype(float)
+    return df
