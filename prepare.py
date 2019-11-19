@@ -20,7 +20,7 @@ def fix_object_columns(df):
     return df
 
 def get_fitbit_data():
-    df = df = pd.read_csv('activity_log.csv')
+    df = pd.read_csv('activity_log.csv')
 
     df = rename_cols(df)
     
