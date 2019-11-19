@@ -14,7 +14,6 @@ def set_date_index(df):
     return df
 
 def fix_object_columns(df):
-    for col in df.columns:
-        if df[col].dtype.str == '|O':
-            df[col] = df[col].str.replace(",","_").astype(float)
+    for col in df.select_dtypes("object").columns:
+        df[col] = df[col].str.replace(",","").astype("float")
     return df
