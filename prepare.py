@@ -19,6 +19,10 @@ def fix_object_columns(df):
         df[col] = df[col].str.replace(",","").astype("float")
     return df
 
+def fix_outliers(df):
+    df.loc["2018-08-26", "cal_burned"] = 2144
+    return df
+
 def get_fitbit_data():
     df = pd.read_csv('activity_log.csv')
 
@@ -27,5 +31,7 @@ def get_fitbit_data():
     df = set_date_index(df)
 
     df = fix_object_columns(df)
+
+    df = fix_outliers(df)
 
     return df
