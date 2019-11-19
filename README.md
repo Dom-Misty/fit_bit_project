@@ -1,16 +1,16 @@
 # Fitbit Project - A Time Series Analysis
 ##### Presented by Dom and Misty
 
-#### Scenario:
+### Scenario
 - Brand new job at Research Co
 - Random man in lab coat gives thumbdrive of csv files
 - The company runs many types of experiments
 
-#### Goals:
+### Goals
 - Find the missing label for the thumbdrive
 - Predict the next two weeks
 
-#### Deliverables: 
+### Deliverables
 - Jupyter notebook 
     - contains analysis & pipeline
 - Tidy data set
