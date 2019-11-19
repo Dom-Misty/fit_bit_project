@@ -7,3 +7,8 @@ def rename_cols(df):
                    "Minutes Fairly Active":"mins_fair_activity","Minutes Very Active":"mins_very_active",
                    "Activity Calories":"activity_cals"})
     return df
+
+def set_date_index(df):
+    df.date = pd.to_datetime(df.date)
+    df.set_index('date', inplace = True)
+    return df
