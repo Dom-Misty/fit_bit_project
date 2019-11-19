@@ -44,3 +44,6 @@ def add_features(df):
     df["mins_total_activity"] = df.mins_light_activity + df.mins_fair_activity + df.mins_very_active
     df['day'] = df.index.strftime('%w-%a')
     return df   
+
+def acquire_data():
+    return pd.read_csv('activity_log.csv')
