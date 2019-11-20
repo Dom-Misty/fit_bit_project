@@ -7,6 +7,7 @@ def split_daily(df):
     return train, test
 
 def split_weekly(df):
-    train = df[:'2018-11-25'].resample("W").agg("mean")
-    test = df['2018-12-02':].resample("W").agg("mean")
+    weekly = df.resample('w').mean()
+    train = weekly[:'2018-11-25']
+    test = weekly['2018-12-02':]
     return train, test
