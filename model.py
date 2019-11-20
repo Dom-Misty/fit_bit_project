@@ -73,7 +73,6 @@ def prophet(train,test):
     return {'prophet': 'moving_avg', 
             'mse': mse,
             'rmse': rmse}
-    pass
 
 
 
@@ -100,3 +99,6 @@ def run_models(train,test):
     model_strength = model_strength.append(row, ignore_index= True)
 
     return model_strength
+
+def plot_figures():
+    pass
