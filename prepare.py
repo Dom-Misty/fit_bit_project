@@ -1,6 +1,9 @@
 import pandas as pd 
 import numpy as np 
 
+def acquire_data():
+    return pd.read_csv('activity_log.csv')
+
 def rename_cols(df):
     df = df.rename(columns={"Date":"date","Calories Burned":"cal_burned", "Steps":"steps", "Distance":"distance", "Floors":"floors",
                   "Minutes Sedentary":"mins_sedentary", "Minutes Lightly Active":"mins_light_activity",
@@ -16,11 +19,7 @@ def set_date_index(df):
 
 def fix_object_columns(df):
     for col in df.select_dtypes("object").columns:
-        df[col] = df[col].str.replace(",","").astype("float")
-    return df
-
-def fix_outliers(df):
-    df.loc["2018-08-26", "cal_burned"] = 2144
+        df[col] = df[col].str.replace(",","")
     return df
 
 def make_float(df):
@@ -29,15 +28,12 @@ def make_float(df):
 
 def prep_fitbit_data(df):
     df = rename_cols(df)
-    
+
     df = set_date_index(df)
 
     df = fix_object_columns(df)
 
-    df = fix_outliers(df)
-
     df = make_float(df)
-
     return df
 
 def add_features(df):
@@ -45,5 +41,7 @@ def add_features(df):
     df['day'] = df.index.strftime('%w-%a')
     return df   
 
-def acquire_data():
-    return pd.read_csv('activity_log.csv')
+def fix_outliers(df):
+    df.loc["2018-08-26", "cal_burned"] = 2144
+    df.loc["2018-08-26", "min_sedentary"] = 1427
+    return df
