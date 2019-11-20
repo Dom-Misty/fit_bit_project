@@ -5,6 +5,7 @@ import pandas as pd
 def time_series_graphs(df): 
     for col in df.columns:
         plt.plot(df[col])
+        plt.plot(df[col].resample("W").mean(), linewidth=3, c="red")
         plt.title(col)
         plt.show()
 
