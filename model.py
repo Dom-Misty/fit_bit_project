@@ -25,7 +25,7 @@ def last_value(train, test):
     rmse = mse**.5
     return {'model_type': 'last_value', 
             'mse': mse,
-            'rmse': rmse}
+            'rmse': rmse},last_value
 
 def simple_avg(train, test):
     simple_average = train.mean()
@@ -34,7 +34,7 @@ def simple_avg(train, test):
     rmse = mse**.5
     return {'model_type': 'simple_avg', 
             'mse': mse,
-            'rmse': rmse}
+            'rmse': rmse},simple_average    
 
 def moving_avg(train, test):
     moving_average = train.rolling(30).mean()[-1]
@@ -43,7 +43,7 @@ def moving_avg(train, test):
     rmse = mse**.5
     return {'model_type': 'moving_avg', 
             'mse': mse,
-            'rmse': rmse}
+            'rmse': rmse},moving_average
 
 def linear_holt(train,test):
     lin_h = Holt(train).fit()
@@ -52,7 +52,7 @@ def linear_holt(train,test):
     rmse = mse**.5
     return {'model_type': 'holt', 
             'mse': mse,
-            'rmse': rmse}
+            'rmse': rmse},yhat
 
 # def prophet(train,test):
 #     mod_train = pd.DataFrame(train)
@@ -92,16 +92,16 @@ def linear_holt(train,test):
 def run_models(train,test):
     model_strength = pd.DataFrame(columns=['model_type', 'mse', 'rmse'])
 
-    row = last_value(train,test)
+    row,_ = last_value(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
-    row = simple_avg(train,test)
+    row,_ = simple_avg(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
-    row = moving_avg(train,test)
+    row,_ = moving_avg(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
-    row = linear_holt(train,test)
+    row,_ = linear_holt(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
     # row = prophet(train,test)
@@ -109,5 +109,19 @@ def run_models(train,test):
 
     return model_strength
 
-def plot_figures():
-    pass
+def plot_figures(train,test):
+    _,last_value_yhat = last_value(train,test)
+    _,simple_avg_yhat = simple_avg(train,test)
+    _,moving_avg_yhat = moving_avg(train,test)
+    _,holt_yhat = linear_holt(train,test)
+    
+    plt.figure(figsize=(14,8))
+    x = plt.plot(train)
+    y = plt.plot(test, color = 'firebrick')
+    a = plt.hlines(last_value_yhat, xmin = test.index.tolist()[0], xmax= test.index.tolist()[-1], linestyles=':')
+    b = plt.hlines(simple_avg_yhat, xmin = test.index.tolist()[0], xmax= test.index.tolist()[-1], linestyles='--')
+    c = plt.hlines(moving_avg_yhat, xmin = test.index.tolist()[0], xmax= test.index.tolist()[-1], linestyles='-')
+    d = plt.plot(holt_yhat, '-.', c = 'black')
+
+    plt.legend([x,y,a,b,c,d], labels = ['Train', 'Actual', 'Holt', 'Last Value', 'Simple Average', 'Moving Average'])
+    plt.title('Predictions')
