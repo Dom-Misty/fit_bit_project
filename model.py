@@ -36,8 +36,8 @@ def simple_avg(train, test):
             'mse': mse,
             'rmse': rmse},simple_average    
 
-def moving_avg(train, test):
-    moving_average = train.rolling(30).mean()[-1]
+def moving_avg(train, test, interval = 30):
+    moving_average = train.rolling(interval).mean()[-1]
     yhat = [moving_average] * test.shape[0]
     mse = mean_squared_error(test, yhat)
     rmse = mse**.5
@@ -89,7 +89,7 @@ def linear_holt(train,test):
 #     pass
 
 
-def run_models(train,test):
+def run_models(train,test, interval = 30):
     model_strength = pd.DataFrame(columns=['model_type', 'mse', 'rmse'])
 
     row,_ = last_value(train,test)
@@ -98,7 +98,7 @@ def run_models(train,test):
     row,_ = simple_avg(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
-    row,_ = moving_avg(train,test)
+    row,_ = moving_avg(train,test, interval = interval)
     model_strength = model_strength.append(row, ignore_index= True)
 
     row,_ = linear_holt(train,test)
