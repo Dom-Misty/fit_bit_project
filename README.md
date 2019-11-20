@@ -5,6 +5,7 @@
 - Brand new job at Research Co
 - Random man in lab coat gives thumbdrive of csv files
 - The company runs many types of experiments
+- Employees and subjects alike wear fitbits
 
 ### Goals
 - Find the missing label for the thumbdrive
@@ -12,12 +13,10 @@
 
 ### Deliverables
 - Jupyter notebook 
-    - contains analysis & pipeline
-- Tidy data set
-    - utilize .py files as appropriate 
-    - specifically a prepare file
-- A summarization of the data
-    - in notebook
+    - contains analysis
+    - tidy data set
+        - utilize.py files as appropriate 
+    - summarization of the data
     - contains theories & conclusions
 - Predictions for the next two weeks worth of data
     - separate csv file
@@ -25,3 +24,7 @@
     - google slides (2 slides + intro)
     - at least one clearly labeled visualization
     - for a general audience
+
+### Required To Run
+- anaconda
+- fbprophet
