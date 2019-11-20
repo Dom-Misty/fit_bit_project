@@ -109,10 +109,10 @@ def run_models(train,test, interval = 30):
 
     return model_strength
 
-def plot_figures(train,test):
+def plot_figures(train,test, interval = 30):
     _,last_value_yhat = last_value(train,test)
     _,simple_avg_yhat = simple_avg(train,test)
-    _,moving_avg_yhat = moving_avg(train,test)
+    _,moving_avg_yhat = moving_avg(train,test, interval = interval)
     _,holt_yhat = linear_holt(train,test)
     
     plt.figure(figsize=(14,8))
