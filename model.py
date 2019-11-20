@@ -109,7 +109,7 @@ def run_models(train,test, interval = 30):
 
     return model_strength
 
-def plot_figures(train,test, interval = 30):
+def plot_figures(train,test, interval = 30, name = 'Predictions'):
     _,last_value_yhat = last_value(train,test)
     _,simple_avg_yhat = simple_avg(train,test)
     _,moving_avg_yhat = moving_avg(train,test, interval = interval)
@@ -124,5 +124,5 @@ def plot_figures(train,test, interval = 30):
     d = plt.plot(holt_yhat, '-.', c = 'black')
 
     plt.legend([x,y,a,b,c,d], labels = ['Train', 'Actual', 'Holt', 'Last Value', 'Simple Average', 'Moving Average'])
-    plt.title('Predictions')
+    plt.title(name)
     plt.show()
