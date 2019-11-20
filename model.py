@@ -125,3 +125,4 @@ def plot_figures(train,test):
 
     plt.legend([x,y,a,b,c,d], labels = ['Train', 'Actual', 'Holt', 'Last Value', 'Simple Average', 'Moving Average'])
     plt.title('Predictions')
+    plt.show()
