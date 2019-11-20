@@ -11,7 +11,7 @@ from statsmodels.tsa.ar_model import AR
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_squared_error
 
-from fbprophet import Prophet
+# from fbprophet import Prophet
 
 import math
 
@@ -54,31 +54,26 @@ def linear_holt(train,test):
             'mse': mse,
             'rmse': rmse}
 
-def prophet(train,test):
-    mod_train = pd.DataFrame(train)
-    mod_test = pd.DataFrame(test)
+# def prophet(train,test):
+#     mod_train = pd.DataFrame(train)
+#     mod_test = pd.DataFrame(test)
 
-    mod_train['y'] = train
-    mod_test['y'] = test
+#     mod_train['y'] = train
+#     mod_test['y'] = test
     
-    mod_train['ds'] = train.index 
-    mod_test['ds'] = test.index
+#     mod_train['ds'] = train.index 
+#     mod_test['ds'] = test.index
 
-    model = Prophet()
-    model.fit(mod_train)
-    yhat = model.predict(mod_test).yhat
+#     model = Prophet()
+#     model.fit(mod_train)
+#     yhat = model.predict(mod_test).yhat
 
-    mse = mean_squared_error(test, yhat)
-    rmse = mse**.5
-    return {'prophet': 'moving_avg', 
-            'mse': mse,
-            'rmse': rmse}
-    pass
-
-
-
-
-
+#     mse = mean_squared_error(test, yhat)
+#     rmse = mse**.5
+#     return {'prophet': 'moving_avg', 
+#             'mse': mse,
+#             'rmse': rmse}
+#     pass
 
 
 def run_models(train,test):
@@ -96,7 +91,7 @@ def run_models(train,test):
     row = linear_holt(train,test)
     model_strength = model_strength.append(row, ignore_index= True)
 
-    row = prophet(train,test)
-    model_strength = model_strength.append(row, ignore_index= True)
+    # row = prophet(train,test)
+    # model_strength = model_strength.append(row, ignore_index= True)
 
     return model_strength
