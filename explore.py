@@ -30,3 +30,4 @@ def subject_profile(df):
     plt.xlabel('age')
     plt.ylabel('weight')
     plt.legend([male,female], labels = ['Male','Female'])
+    plt.show()
