@@ -115,8 +115,9 @@ def plot_figures(train,test, interval = 30, name = 'Predictions'):
     _,moving_avg_yhat = moving_avg(train,test, interval = interval)
     _,holt_yhat = linear_holt(train,test)
     
+    train = train.append(test[:1])
     plt.figure(figsize=(14,8))
-    x = plt.plot(train)
+    x = plt.plot(train['2018-09':])
     y = plt.plot(test, color = 'firebrick')
     a = plt.hlines(last_value_yhat, xmin = test.index.tolist()[0], xmax= test.index.tolist()[-1], linestyles=':')
     b = plt.hlines(simple_avg_yhat, xmin = test.index.tolist()[0], xmax= test.index.tolist()[-1], linestyles='--')
