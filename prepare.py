@@ -43,5 +43,5 @@ def add_features(df):
 
 def fix_outliers(df):
     df.loc["2018-08-26", "cal_burned"] = 2144
-    df.loc["2018-08-26", "min_sedentary"] = 1427
+    df.loc["2018-08-26", "mins_sedentary"] = 1427
     return df
