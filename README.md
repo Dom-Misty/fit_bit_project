@@ -20,7 +20,7 @@
     - contains theories & conclusions
 - Predictions for the next two weeks worth of data
     - separate csv file
-- Presentation
+- [Presentation]("https://docs.google.com/presentation/d/1H_Aj-D7dADbr-G54-Wo5IGb3xgMT_bBg1tRsV_T58eY/edit#slide=id.g79104a3e92_0_792")
     - google slides (2 slides + intro)
     - at least one clearly labeled visualization
     - for a general audience
