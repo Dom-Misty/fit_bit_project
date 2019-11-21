@@ -127,3 +127,22 @@ def plot_figures(train,test, interval = 30, name = 'Predictions'):
     plt.legend([x,y,a,b,c,d], labels = ['Train', 'Actual', 'Holt', 'Last Value', 'Simple Average', 'Moving Average'])
     plt.title(name)
     plt.show()
+
+def final_predictions(train,test):
+    df = train.append(test)
+    predicted = pd.DataFrame(index = pd.date_range('2018-12-07', '2018-12-20', freq='d'))
+
+    for col in df.columns:
+        models = run_models(train[col], test[col], interval = 4)
+        mod_type = models[models.rmse == models.rmse.min()].model_type
+        predicted[col] = 0
+        if mod_type.index[0] == 0:
+            predicted[col] = last_value(df[col],predicted[col])[1]
+        elif mod_type.index[0] == 1:
+            predicted[col] = simple_avg(df[col],predicted[col])[1]
+        elif mod_type.index[0] == 2:
+            predicted[col] = moving_avg(df[col],predicted[col])[1]
+    return df.append(predicted)
+    
+    
+    pass
